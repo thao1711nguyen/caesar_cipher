@@ -1,13 +1,13 @@
 
-def caesar_ciper(string, shift_factor) 
+def caesar_cipher(string, shift_factor) 
     #transfer each character of the string
     #check if the original one is upcase 
     #upcase the new character
     alphabet = ('a'..'z').to_a
     string_array = string.split('')
     string_array.reduce('') do |new_string, character|
-        if character == " "
-            new_character= " "
+        unless character.downcase.between?('a', 'z')
+            new_character= character
         else
             is_upcase = character == character.upcase
             alphabet_order = alphabet.index(character.downcase)
@@ -20,9 +20,9 @@ def caesar_ciper(string, shift_factor)
             new_character = alphabet[new_alphabet_order]
             is_upcase ? new_character = new_character.upcase : new_character
         end 
-    new_string + new_character
+        new_string + new_character
     end
 end
 
-p caesar_ciper('Hello Thao', 7)
+p caesar_cipher('Hello Thao', 7)
  
